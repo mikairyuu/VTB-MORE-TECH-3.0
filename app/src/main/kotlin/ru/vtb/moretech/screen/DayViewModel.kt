@@ -4,16 +4,20 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
+import ru.vtb.storage.PreferencesProvider
 import javax.inject.Inject
 
 const val TAG = "TESTING"
 
 @HiltViewModel
 class DayViewModel @Inject constructor(
-    @ApplicationContext val context: Context
+    @ApplicationContext private val context: Context,
+    private val preferencesProvider: PreferencesProvider
 ): ViewModel() {
 
     val dayState = MutableStateFlow(0)
@@ -39,7 +43,10 @@ class DayViewModel @Inject constructor(
             }
         }
         else {
-            isNeededToNavigate.value = true
+            viewModelScope.launch {
+                preferencesProvider.savePassedInitialIntroduction()
+                isNeededToNavigate.value = true
+            }
         }
     }
 
