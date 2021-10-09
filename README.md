@@ -8,7 +8,7 @@
 * Карьерный план
 * Фрагмент прохождения курса с развернутым пояснением правильности выбора ответа
 * Анимации переходов
-* В репозитории находится __*.apk__ файл (путь app/build/intermediates/apk/debug/app-debug.apk) для возможности тестирования работоспособности
+* В репозитории находится __*.apk__ файл (путь debug/app-debug.apk) для возможности тестирования работоспособности
 
 ## Скриншоты
 <img src="https://user-images.githubusercontent.com/51982941/136667883-9fcc201a-7606-4f7d-b04a-5335ca8105dc.jpg" height="500"/> <img src="https://user-images.githubusercontent.com/51982941/136667878-fd41a6f3-f94c-4ab3-8b70-d319104a1cb6.jpg" height="500"/> 
