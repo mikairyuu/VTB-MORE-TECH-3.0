@@ -4,16 +4,17 @@
     <string name="day_title_0">День 0. Собеседование</string>
 
     <string name="day_header_0_1">Привет! Ты мой новый аналитик инвестиций, верно?</string>
+
+    <string-array name="answer_0_1">
+        <item>Конечно!</item>
+        <item>Я прошёл четыре тестирования\nи три интервью и\nты не знаешь кто я?</item>
+    </string-array>
+
     <string name="day_header_0_2">Меня зовут Макс, с этого момента я твой новый босс.\nПозволь провести тебе краткий экскурс по твоей новой работе.</string>
 
-    <string name="answer_0_0_1">Конечно!</string>
-    <string name="answer_0_0_2">Я прошёл четыре тестирования\nи три интервью и\nты не знаешь кто я?</string>
-
-    <string name="answer_0_1_1">Конечно!</string>
-    <string name="answer_0_2_1">Круто!</string>
-
-    <string name="answer_0_3_1">Согласиться</string>
-    <string name="answer_0_3_2">Нервно сглотнуть</string>
+    <string-array name="answer_0_2">
+        <item>Конечно!</item>
+    </string-array>
 
     <string name="message_title_0_1">В нашей компании есть 3 принципа</string>
     <string-array name="message_item_0_1">
@@ -22,7 +23,48 @@
         <item>Больше знаешь - больше зарабатываешь</item>
     </string-array>
 
+    <string-array name="answer_0_3">
+        <item>Круто!</item>
+    </string-array>
+
     <string name="message_title_0_2">Ха-ха-ха! Вот это настрой! Мне нравится, когда новички уже сходу такие бойкие!</string>
 
     <string name="message_title_0_3">Вот только видишь ли...\nТут такое дело...\nХоть ты и сказал раньше, что тебе ОЧЕНЬ нужна эта работа, я не могу позволить тебе консультировать других людей по таким важным вопросам как деньги, без какой-либо проверки ТВОИХ знаний, согласен?</string>
+
+    <string-array name="answer_0_4">
+        <item>Согласиться</item>
+        <item>Нервно сглотнуть</item>
+    </string-array>
+
+    <string name="message_title_0_4">Лучше начать с легких вещей, согласен? У тебя есть мечта, связанная с инвестициями? Смелее, тут нет неправильных ответов.</string>
+
+    <string-array name="answer_0_5">
+        <item>Я хочу зарабатывать, не работая</item>
+        <item>Хочу накопить на крупную покупку</item>
+        <item>Мне просто интересен сам процесс! Инвестиции для меня как игра.</item>
+    </string-array>
+
+    <string name="message_title_0_5">Есть ли у тебя экономическое образование?</string>
+
+    <string-array name="answer_0_6">
+        <item>Есть экономическое или аналогичное</item>
+        <item>Нет</item>
+    </string-array>
+
+    <string name="message_title_0_6">Каких знаний тебе не хватает?</string>
+
+    <string-array name="answer_0_7">
+        <item>Как начать инвестировать, от чего зависит прибыль, с чего начать</item>
+        <item>Знания - это решаемый вопрос, мне не хватает денег, чтобы инвестировать по-крупному</item>
+        <item>Я не уверен, что смогу пережить потерю моих сбережений</item>
+    </string-array>
+
+    <string name="message_title_0_7">Ты сам когда-нибудь инвестировал?</string>
+
+    <string-array name="answer_0_8">
+        <item>Инвестирую впервые</item>
+        <item>Инвестирую от полугода</item>
+        <item>Инвестирую более 3х лет</item>
+    </string-array>
+
 </resources>
