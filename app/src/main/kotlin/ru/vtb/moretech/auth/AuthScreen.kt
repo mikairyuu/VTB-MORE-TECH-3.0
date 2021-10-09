@@ -22,16 +22,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import ru.vtb.moretech.R
 import ru.vtb.moretech.login.LoginViewModel
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun AuthScreen(viewModel: LoginViewModel = hiltViewModel()) {
+fun AuthScreen(
+    navController: NavHostController,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
 
     val emailState by viewModel.email.collectAsState()
     val passwordState by viewModel.password.collectAsState()
     var passwordVisibility by remember { mutableStateOf(true) }
+
+    val isNeededToNavigate by viewModel.isNeededToNavigated.collectAsState()
+
+    if (isNeededToNavigate) {
+        navController.navigate("Day")
+    }
 
 //    val (focusRequester) = FocusRequester.createRefs()
 //    val focusRequester = remember { FocusRequester() }
@@ -43,12 +53,28 @@ fun AuthScreen(viewModel: LoginViewModel = hiltViewModel()) {
                 elevation = 0.dp,
                 backgroundColor = MaterialTheme.colors.background,
             ) {
-                Text(
-                    text = "Авторизация",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    modifier = Modifier.padding(start = 10.dp)
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(painterResource(R.drawable.ic_arrow_back), null)
+                    }
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = "Авторизация",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            modifier = Modifier.padding(start = 10.dp)
+                        )
+                        Text(
+                            text = "Регистрация",
+                            fontWeight = FontWeight.Thin,
+                            fontSize = 12.sp,
+                            modifier = Modifier.padding(start = 10.dp)
+                        )
+                    }
+                }
             }
         }
     ) {

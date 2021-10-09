@@ -24,17 +24,28 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import ru.vtb.moretech.R
 import ru.vtb.moretech.ui.theme.VTBTheme
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
+fun LoginScreen(
+    navController: NavHostController,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
 
     val nameState by viewModel.name.collectAsState()
     val emailState by viewModel.email.collectAsState()
     val passwordState by viewModel.password.collectAsState()
     var passwordVisibility by remember { mutableStateOf(true) }
+
+    val isNeededToNavigate by viewModel.isNeededToNavigated.collectAsState()
+
+    if (isNeededToNavigate) {
+        navController.navigate("Day")
+    }
 
 //    val (focusRequester) = FocusRequester.createRefs()
 //    val focusRequester = remember { FocusRequester() }
@@ -171,7 +182,7 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                     modifier = Modifier
                         .padding(bottom = 40.dp)
                         .clickable {
-
+                            navController.navigate("Authorization")
                         },
                     textAlign = TextAlign.Center
                 )
@@ -181,12 +192,12 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
 }
 
 
-@Composable
-@Preview
-fun LoginPreview() {
-
-    VTBTheme {
-        LoginScreen()
-    }
-
-}
+//@Composable
+//@Preview
+//fun LoginPreview() {
+//
+//    VTBTheme {
+//        LoginScreen()
+//    }
+//
+//}

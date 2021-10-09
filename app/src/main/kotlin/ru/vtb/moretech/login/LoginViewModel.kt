@@ -22,11 +22,13 @@ class LoginViewModel @Inject constructor(
     val email =  MutableStateFlow("")
     val password =  MutableStateFlow("")
 
+    val isNeededToNavigated = MutableStateFlow(false)
+
     fun onClickRegister() {
 
         viewModelScope.launch {
             registerUserUseCase(User(name.value, email.value, password.value)).also {
-                Log.d("TESTING_REG", it.token)
+                isNeededToNavigated.value = true
             }
         }
     }
@@ -35,7 +37,7 @@ class LoginViewModel @Inject constructor(
 
         viewModelScope.launch {
             loginUSerUseCase(UserSummary(email.value, password.value)).also {
-                Log.d("TESTING_AUTH", it.token)
+                isNeededToNavigated.value = true
             }
         }
     }
