@@ -21,6 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.vtb.moretech.auth.AuthScreen
+import ru.vtb.moretech.career.CareerPlanScreen
+import ru.vtb.moretech.career.CareerTopBar
 import ru.vtb.moretech.login.LoginScreen
 import ru.vtb.moretech.screen.DayScreen
 import ru.vtb.moretech.ui.theme.VTBTheme
@@ -48,112 +50,108 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
 
-            val navController = rememberAnimatedNavController()
 
             VTBTheme {
-
-                AnimatedNavHost(navController, startDestination = initialDestination) {
-                    composable(
-                        "Registration",
-                        enterTransition = { initial, _ ->
-                            when (initial.destination.route) {
-                                "Authorization" ->
-                                    slideInHorizontally(
-                                        initialOffsetX = { 0 },
-                                        animationSpec = tween(700)
-                                    )
-                                else -> null
-                            }
-                        },
-                        exitTransition = { _, target ->
-                            when (target.destination.route) {
-                                "Authorization" ->
-                                    slideOutHorizontally(
-                                        targetOffsetX = { -1000 },
-                                        animationSpec = tween(700)
-                                    )
-                                else -> null
-                            }
-                        },
-                        popEnterTransition = { initial, _ ->
-                            when (initial.destination.route) {
-                                "Authorization" ->
-                                    slideInHorizontally(
-                                        initialOffsetX = { -1000 },
-                                        animationSpec = tween(700)
-                                    )
-                                else -> null
-                            }
-                        },
-                        popExitTransition = { _, target ->
-                            when (target.destination.route) {
-                                "Authorization" ->
-                                    slideOutHorizontally(
-                                        targetOffsetX = { 0 },
-                                        animationSpec = tween(700)
-                                    )
-                                else -> null
-                            }
-                        }
-                    ) { LoginScreen(navController) }
-                    composable(
-                        "Authorization",
-                        enterTransition = { initial, _ ->
-                            when (initial.destination.route) {
-                                "Registration" ->
-                                    slideInHorizontally(
-                                        initialOffsetX = { 1000 },
-                                        animationSpec = tween(700)
-                                    )
-                                else -> null
-                            }
-                        },
-                        exitTransition = { _, target ->
-                            when (target.destination.route) {
-                                "Registration" ->
-                                    slideOutHorizontally(
-                                        targetOffsetX = { -1000 },
-                                        animationSpec = tween(700)
-                                    )
-                                else -> null
-                            }
-                        },
-                        popEnterTransition = { initial, _ ->
-                            when (initial.destination.route) {
-                                "Registration" ->
-                                    slideInHorizontally(
-                                        initialOffsetX = { -1000 },
-                                        animationSpec = tween(700)
-                                    )
-                                else -> null
-                            }
-                        },
-                        popExitTransition = { _, target ->
-                            when (target.destination.route) {
-                                "Registration" ->
-                                    slideOutHorizontally(
-                                        targetOffsetX = { 1000 },
-                                        animationSpec = tween(700)
-                                    )
-                                else -> null
-                            }
-                        }
-                    ) { AuthScreen(navController) }
-                    composable("Day") {
-                        DayScreen()
-                    }
-                    // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colors.background
-//                ) {
-////                    Greeting("Android")
-////                    DayScreen()
-////                    LoginScreen()
-//                    AuthScreen()
-//                }
-                }
+                CareerPlanScreen()
             }
+
+
+//            val navController = rememberAnimatedNavController()
+//
+//            VTBTheme {
+//
+//                AnimatedNavHost(navController, startDestination = initialDestination) {
+//                    composable(
+//                        "Registration",
+//                        enterTransition = { initial, _ ->
+//                            when (initial.destination.route) {
+//                                "Authorization" ->
+//                                    slideInHorizontally(
+//                                        initialOffsetX = { 0 },
+//                                        animationSpec = tween(700)
+//                                    )
+//                                else -> null
+//                            }
+//                        },
+//                        exitTransition = { _, target ->
+//                            when (target.destination.route) {
+//                                "Authorization" ->
+//                                    slideOutHorizontally(
+//                                        targetOffsetX = { -1000 },
+//                                        animationSpec = tween(700)
+//                                    )
+//                                else -> null
+//                            }
+//                        },
+//                        popEnterTransition = { initial, _ ->
+//                            when (initial.destination.route) {
+//                                "Authorization" ->
+//                                    slideInHorizontally(
+//                                        initialOffsetX = { -1000 },
+//                                        animationSpec = tween(700)
+//                                    )
+//                                else -> null
+//                            }
+//                        },
+//                        popExitTransition = { _, target ->
+//                            when (target.destination.route) {
+//                                "Authorization" ->
+//                                    slideOutHorizontally(
+//                                        targetOffsetX = { 0 },
+//                                        animationSpec = tween(700)
+//                                    )
+//                                else -> null
+//                            }
+//                        }
+//                    ) { LoginScreen(navController) }
+//                    composable(
+//                        "Authorization",
+//                        enterTransition = { initial, _ ->
+//                            when (initial.destination.route) {
+//                                "Registration" ->
+//                                    slideInHorizontally(
+//                                        initialOffsetX = { 1000 },
+//                                        animationSpec = tween(700)
+//                                    )
+//                                else -> null
+//                            }
+//                        },
+//                        exitTransition = { _, target ->
+//                            when (target.destination.route) {
+//                                "Registration" ->
+//                                    slideOutHorizontally(
+//                                        targetOffsetX = { -1000 },
+//                                        animationSpec = tween(700)
+//                                    )
+//                                else -> null
+//                            }
+//                        },
+//                        popEnterTransition = { initial, _ ->
+//                            when (initial.destination.route) {
+//                                "Registration" ->
+//                                    slideInHorizontally(
+//                                        initialOffsetX = { -1000 },
+//                                        animationSpec = tween(700)
+//                                    )
+//                                else -> null
+//                            }
+//                        },
+//                        popExitTransition = { _, target ->
+//                            when (target.destination.route) {
+//                                "Registration" ->
+//                                    slideOutHorizontally(
+//                                        targetOffsetX = { 1000 },
+//                                        animationSpec = tween(700)
+//                                    )
+//                                else -> null
+//                            }
+//                        }
+//                    ) { AuthScreen(navController) }
+//                    composable("Day") {
+//                        DayScreen()
+//                    }
+//                }
+//            }
         }
     }
 }
