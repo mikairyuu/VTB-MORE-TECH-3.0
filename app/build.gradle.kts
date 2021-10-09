@@ -53,6 +53,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splash)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation(libs.compose.ui.core)
@@ -67,4 +68,5 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
 
     implementation(projects.libraries.network)
+    implementation(projects.shared.day)
 }

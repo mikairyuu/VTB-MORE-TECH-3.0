@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.LazyCloud" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.VTB" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">#FF172030</item>
+    </style>
+    <style name="Theme.Splash" parent="Theme.SplashScreen.IconBackground">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.VTB</item>
     </style>
 </resources>
