@@ -65,4 +65,6 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     debugImplementation(libs.compose.ui.tooling)
+
+    implementation(projects.libraries.network)
 }

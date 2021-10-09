@@ -4,6 +4,8 @@ compose_version = '1.0.2'
 kotlin_version = '1.5.21'
 gradle_version = '7.1.0-alpha13'
 dagger_version = '2.39.1'
+retrofit_version = '2.9.0'
+okhttp_version = '4.9.2'
 
 [libraries]
 
@@ -26,6 +28,12 @@ hilt-compiler = { group = 'com.google.dagger', name = 'hilt-compiler', version.r
 hilt-navigation = { group = 'androidx.hilt', name = 'hilt-navigation-compose', version = '1.0.0-alpha03' }
 hilt-gradle-core = { group = 'com.google.dagger', name = 'hilt-android-gradle-plugin', version.ref = 'dagger_version' }
 
+retrofit-core = { group = 'com.squareup.retrofit2', name = 'retrofit', version.ref = 'retrofit_version' }
+retrofit-moshi = { group = 'com.squareup.retrofit2', name = 'converter-moshi', version.ref = 'retrofit_version' }
+okhttp-interceptor = { group = 'com.squareup.okhttp3', name = 'logging-interceptor', version.ref = 'okhttp_version' }
+
 kotlin-gradle-core = { group = 'org.jetbrains.kotlin', name = 'kotlin-gradle-plugin', version.ref = 'kotlin_version' }
 
 [bundles]
+
+retrofit = ['retrofit-core', 'retrofit-moshi', 'okhttp-interceptor']
