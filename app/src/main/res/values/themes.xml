@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.LazyCloud" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/purple_700</item>
+        <item name="android:statusBarColor">#FF172030</item>
     </style>
 </resources>

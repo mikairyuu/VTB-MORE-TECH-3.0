@@ -3,6 +3,7 @@
 compose_version = '1.0.2'
 kotlin_version = '1.5.21'
 gradle_version = '7.1.0-alpha13'
+dagger_version = '2.39.1'
 
 [libraries]
 
@@ -19,6 +20,11 @@ androidx-lifecycle-runtime-ktx = 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1
 
 android-material = 'com.google.android.material:material:1.4.0'
 android-gradle-core = { group = 'com.android.tools.build', name = 'gradle', version.ref = 'gradle_version' }
+
+hilt-android = { group = 'com.google.dagger', name = 'hilt-android', version.ref = 'dagger_version' }
+hilt-compiler = { group = 'com.google.dagger', name = 'hilt-compiler', version.ref = 'dagger_version' }
+hilt-navigation = { group = 'androidx.hilt', name = 'hilt-navigation-compose', version = '1.0.0-alpha03' }
+hilt-gradle-core = { group = 'com.google.dagger', name = 'hilt-android-gradle-plugin', version.ref = 'dagger_version' }
 
 kotlin-gradle-core = { group = 'org.jetbrains.kotlin', name = 'kotlin-gradle-plugin', version.ref = 'kotlin_version' }
 

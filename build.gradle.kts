@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath(libs.android.gradle.core)
         classpath(libs.kotlin.gradle.core)
+        classpath(libs.hilt.gradle.core)
     }
 }
 
