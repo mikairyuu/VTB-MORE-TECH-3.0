@@ -13,3 +13,4 @@ rootProject.name = "VTBMORETECH"
 include(":app")
 include(":libraries:network")
 include(":shared:day")
+include(":shared:auth")

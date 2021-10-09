@@ -1,7 +1,6 @@
-package ru.vtb.moretech.login
+package ru.vtb.moretech.auth
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -20,18 +19,16 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.vtb.moretech.R
-import ru.vtb.moretech.ui.theme.VTBTheme
+import ru.vtb.moretech.login.LoginViewModel
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
+fun AuthScreen(viewModel: LoginViewModel = hiltViewModel()) {
 
-    val nameState by viewModel.name.collectAsState()
     val emailState by viewModel.email.collectAsState()
     val passwordState by viewModel.password.collectAsState()
     var passwordVisibility by remember { mutableStateOf(true) }
@@ -47,7 +44,7 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                 backgroundColor = MaterialTheme.colors.background,
             ) {
                 Text(
-                    text = "Регистрация",
+                    text = "Авторизация",
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
                     modifier = Modifier.padding(start = 10.dp)
@@ -70,23 +67,6 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                     modifier = Modifier
                         .padding(top = 50.dp)
                         .size(150.dp)
-                )
-                OutlinedTextField(
-                    value = nameState,
-                    onValueChange = { viewModel.name.value = it },
-                    label = { Text("Имя") },
-                    keyboardOptions = KeyboardOptions(
-                        imeAction = ImeAction.Next,
-                        keyboardType = KeyboardType.Text
-                    ),
-//                    keyboardActions = KeyboardActions(
-//                        onNext = { focusRequester.requestFocus() }
-//                    ),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        cursorColor = Color(0xFF3A83F1),
-                        focusedBorderColor = Color(0xFF3A83F1),
-                        focusedLabelColor = Color(0xFF3A83F1),
-                    )
                 )
                 OutlinedTextField(
                     value = emailState,
@@ -148,10 +128,10 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Button(
-                    onClick = { viewModel.onClickRegister() },
+                    onClick = { viewModel.onClickLogin() },
                     shape = RoundedCornerShape(12.dp),
                     modifier = Modifier
-                        .padding(bottom = 15.dp)
+                        .padding(bottom = 55.dp)
                         .fillMaxWidth()
                         .heightIn(min = 50.dp)
                         .padding(start = 40.dp, end = 40.dp),
@@ -160,33 +140,13 @@ fun LoginScreen(viewModel: LoginViewModel = hiltViewModel()) {
                     )
                 ) {
                     Text(
-                        text = "Зарегистрироваться",
+                        text = "Авторизироваться",
                         fontSize = 16.sp,
                         textAlign = TextAlign.Center
                     )
 
                 }
-                Text(
-                    text = "Уже зарегистрированы?",
-                    modifier = Modifier
-                        .padding(bottom = 40.dp)
-                        .clickable {
-
-                        },
-                    textAlign = TextAlign.Center
-                )
             }
         }
     }
-}
-
-
-@Composable
-@Preview
-fun LoginPreview() {
-
-    VTBTheme {
-        LoginScreen()
-    }
-
 }

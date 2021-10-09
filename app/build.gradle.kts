@@ -69,4 +69,5 @@ dependencies {
 
     implementation(projects.libraries.network)
     implementation(projects.shared.day)
+    implementation(projects.shared.auth)
 }

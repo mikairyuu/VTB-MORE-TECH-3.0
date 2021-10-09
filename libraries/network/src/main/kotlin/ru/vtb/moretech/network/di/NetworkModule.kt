@@ -31,7 +31,7 @@ object RetrofitModule {
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit
         .Builder()
-        .baseUrl("")
+        .baseUrl("https://vtb-backend.azurewebsites.net/")
         .addConverterFactory(MoshiConverterFactory.create())
         .client(client)
         .build()

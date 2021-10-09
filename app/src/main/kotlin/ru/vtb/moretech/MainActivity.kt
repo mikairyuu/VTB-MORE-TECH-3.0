@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import dagger.hilt.android.AndroidEntryPoint
+import ru.vtb.moretech.auth.AuthScreen
 import ru.vtb.moretech.login.LoginScreen
 import ru.vtb.moretech.ui.theme.VTBTheme
 
@@ -27,7 +28,8 @@ class MainActivity : ComponentActivity() {
                 ) {
 //                    Greeting("Android")
 //                    DayScreen()
-                    LoginScreen()
+//                    LoginScreen()
+                    AuthScreen()
                 }
             }
         }
