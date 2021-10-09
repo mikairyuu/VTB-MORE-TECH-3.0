@@ -33,11 +33,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import ru.vtb.moretech.R
 import ru.vtb.moretech.day.DayTopBar
 import ru.vtb.moretech.ui.theme.Message
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import kotlinx.coroutines.launch
 
 @Composable
-fun DayScreen(viewModel: DayViewModel = hiltViewModel()) {
+fun DayScreen(
+    navController: NavHostController,
+    viewModel: DayViewModel = hiltViewModel()
+) {
 
     val dayState by viewModel.dayState.collectAsState()
     val headerState by viewModel.headerState.collectAsState()
@@ -46,7 +50,7 @@ fun DayScreen(viewModel: DayViewModel = hiltViewModel()) {
     val isNeededToNavigate by viewModel.isNeededToNavigate.collectAsState()
 
     if (isNeededToNavigate) {
-//        navController.navigate("Day")
+        navController.navigate("CareerPlan")
     }
 
     val listState = rememberLazyListState()
@@ -73,7 +77,7 @@ fun DayScreen(viewModel: DayViewModel = hiltViewModel()) {
                     }
                 }
                 if (answer > 2) {
-                    itemsIndexed(viewModel.messages) { index, item->
+                    itemsIndexed(viewModel.messages) { index, item ->
                         SubHeader(dialogAvatar.random()) {
                             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                 Text(
@@ -89,9 +93,9 @@ fun DayScreen(viewModel: DayViewModel = hiltViewModel()) {
                     }
                     coroutineScope.launch {
 //                        if (viewModel.messages.size > 1) {
-                           // listState.scrollToItem(viewModel.messages.size-1)
-                             listState.animateScrollToItem(viewModel.messages.size-1)
-                            Log.d("TESTING", "SCROLL ${viewModel.messages.size-1}")
+                        // listState.scrollToItem(viewModel.messages.size-1)
+                        listState.animateScrollToItem(viewModel.messages.size - 1)
+                        Log.d("TESTING", "SCROLL ${viewModel.messages.size - 1}")
 //                        }
 
                     }
@@ -107,7 +111,8 @@ fun DayScreen(viewModel: DayViewModel = hiltViewModel()) {
             ) {
                 val buttons = dynamicStringArrayRes(prefix = "answer", i = dayState, j = answer)
                 for ((index, temp) in buttons.withIndex()) {
-                    AnswerButton(temp,
+                    AnswerButton(
+                        temp,
                         if (index != buttons.size - 1) Color(0xFF3A83F1) else Color(0xFF225094)
                     ) {
                         viewModel.onClick(index)
@@ -240,6 +245,14 @@ fun dynamicStringRes(prefix: String, i: Int, j: Int): String {
     val content = LocalContext.current
 
     val id = content.resources.getIdentifier("${prefix}_${i}_${j}", "string", "ru.vtb.moretech")
+    return stringResource(id)
+}
+
+@Composable
+fun dynamicStringRes(prefix: String, i: Int): String {
+    val content = LocalContext.current
+
+    val id = content.resources.getIdentifier("${prefix}_${i}", "string", "ru.vtb.moretech")
     return stringResource(id)
 }
 

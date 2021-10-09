@@ -14,6 +14,8 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -21,6 +23,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.vtb.moretech.auth.AuthScreen
+import ru.vtb.moretech.career.CareerPlanScreen
+import ru.vtb.moretech.career.CareerTopBar
 import ru.vtb.moretech.login.LoginScreen
 import ru.vtb.moretech.screen.DayScreen
 import ru.vtb.moretech.ui.theme.VTBTheme
@@ -41,7 +45,11 @@ class MainActivity : ComponentActivity() {
 
         runBlocking {
             initialDestination = preferencesProvider.getUserToken()?.let {
-              "Day"
+                if (preferencesProvider.getPassedInitialIntroduction()) {
+                    "CareerPlan"
+                } else {
+                    "Day"
+                }
             } ?: "Registration"
         }
 
@@ -140,18 +148,21 @@ class MainActivity : ComponentActivity() {
                         }
                     ) { AuthScreen(navController) }
                     composable("Day") {
-                        DayScreen()
+                        DayScreen(navController)
                     }
-                    // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colors.background
-//                ) {
-////                    Greeting("Android")
-////                    DayScreen()
-////                    LoginScreen()
-//                    AuthScreen()
-//                }
+                    composable("CareerPlan") {
+                        CareerPlanScreen(navController)
+                    }
+                    composable("Theory") {
+                        Theory(navController)
+                    }
+                    composable("Respect/{respectId}",
+                        arguments = listOf(navArgument("respectId") { type = NavType.IntType }) ) { backStackEntry ->
+                        val respectId = backStackEntry.arguments?.getInt("respectId")
+                        Log.d("TESTING", respectId.toString())
+                        requireNotNull(respectId)
+                        Respect(respectId)
+                    }
                 }
             }
         }
