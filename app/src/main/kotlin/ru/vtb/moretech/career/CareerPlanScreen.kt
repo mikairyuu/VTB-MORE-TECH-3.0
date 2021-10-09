@@ -1,6 +1,9 @@
 package ru.vtb.moretech.career
 
+import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -9,6 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -17,10 +21,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import ru.vtb.moretech.R
 
 @Composable
-fun CareerPlanScreen() {
+fun CareerPlanScreen(navController: NavHostController) {
 
     val list = stringArrayResource(R.array.career_plan)
 
@@ -53,7 +58,13 @@ fun CareerPlanScreen() {
                         .background(if (index == 0) Color(0xFF3A83F1) else Color.White)
 
                     )
-                    Column() {
+                    Column(modifier = Modifier    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null
+                    ) { if (index == 0) {
+                        navController.navigate("Theory")
+                    }
+                    }) {
                         Card(
                             modifier = Modifier.widthIn(max = 200.dp),
                             shape = RoundedCornerShape(18.dp),

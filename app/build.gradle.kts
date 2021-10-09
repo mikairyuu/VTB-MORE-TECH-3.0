@@ -66,6 +66,7 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     implementation("com.google.accompanist:accompanist-navigation-animation:0.19.0")
+    implementation("com.google.accompanist:accompanist-pager:0.19.0")
 
     debugImplementation(libs.compose.ui.tooling)
 

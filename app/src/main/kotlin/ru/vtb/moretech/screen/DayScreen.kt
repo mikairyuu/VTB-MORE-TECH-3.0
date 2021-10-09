@@ -249,6 +249,14 @@ fun dynamicStringRes(prefix: String, i: Int, j: Int): String {
 }
 
 @Composable
+fun dynamicStringRes(prefix: String, i: Int): String {
+    val content = LocalContext.current
+
+    val id = content.resources.getIdentifier("${prefix}_${i}", "string", "ru.vtb.moretech")
+    return stringResource(id)
+}
+
+@Composable
 fun dynamicStringArrayRes(prefix: String, i: Int, j: Int): Array<String> {
 
     val content = LocalContext.current

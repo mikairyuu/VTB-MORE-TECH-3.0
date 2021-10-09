@@ -14,6 +14,8 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -149,7 +151,17 @@ class MainActivity : ComponentActivity() {
                         DayScreen(navController)
                     }
                     composable("CareerPlan") {
-                        CareerPlanScreen()
+                        CareerPlanScreen(navController)
+                    }
+                    composable("Theory") {
+                        Theory(navController)
+                    }
+                    composable("Respect/{respectId}",
+                        arguments = listOf(navArgument("respectId") { type = NavType.IntType }) ) { backStackEntry ->
+                        val respectId = backStackEntry.arguments?.getInt("respectId")
+                        Log.d("TESTING", respectId.toString())
+                        requireNotNull(respectId)
+                        Respect(respectId)
                     }
                 }
             }
