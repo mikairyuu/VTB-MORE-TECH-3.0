@@ -30,7 +30,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun LazyCloudTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun VTBTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = //if (darkTheme) {
         DarkColorPalette
 //    } else {
