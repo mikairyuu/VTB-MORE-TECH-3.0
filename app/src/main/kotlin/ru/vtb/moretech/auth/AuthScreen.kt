@@ -157,7 +157,7 @@ fun AuthScreen(
                     onClick = { viewModel.onClickLogin() },
                     shape = RoundedCornerShape(12.dp),
                     modifier = Modifier
-                        .padding(bottom = 55.dp)
+                        .padding(bottom = 75.dp)
                         .fillMaxWidth()
                         .heightIn(min = 50.dp)
                         .padding(start = 40.dp, end = 40.dp),

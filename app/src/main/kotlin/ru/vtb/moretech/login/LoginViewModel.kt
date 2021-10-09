@@ -10,12 +10,17 @@ import ru.vtb.auth.domain.entity.User
 import ru.vtb.auth.domain.entity.UserSummary
 import ru.vtb.auth.domain.usecase.LoginUSerUseCase
 import ru.vtb.auth.domain.usecase.RegisterUserUseCase
+import ru.vtb.storage.PreferencesProvider
 import javax.inject.Inject
+
+inline fun <T> all(vararg values: T, condition: (T) -> Boolean): Boolean =
+    values.all { condition(it) }
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val registerUserUseCase: RegisterUserUseCase,
-    private val loginUSerUseCase: LoginUSerUseCase
+    private val loginUSerUseCase: LoginUSerUseCase,
+    private val preferencesProvider: PreferencesProvider
 ): ViewModel(){
 
     var name =  MutableStateFlow("")
@@ -26,18 +31,33 @@ class LoginViewModel @Inject constructor(
 
     fun onClickRegister() {
 
-        viewModelScope.launch {
-            registerUserUseCase(User(name.value, email.value, password.value)).also {
-                isNeededToNavigated.value = true
+        if (all(name.value, email.value, password.value) { it.isNotBlank() }) {
+            viewModelScope.launch {
+                try {
+                    registerUserUseCase(User(name.value, email.value, password.value)).also {
+                        preferencesProvider.saveUserToken(it.token)
+                        isNeededToNavigated.value = true
+                    }
+                } catch (e: Exception) {
+
+                }
+
             }
         }
     }
 
     fun onClickLogin() {
 
-        viewModelScope.launch {
-            loginUSerUseCase(UserSummary(email.value, password.value)).also {
-                isNeededToNavigated.value = true
+        if (all(email.value, password.value) { it.isNotBlank() }) {
+            viewModelScope.launch {
+                try {
+                    loginUSerUseCase(UserSummary(email.value, password.value)).also {
+                        preferencesProvider.saveUserToken(it.token)
+                        isNeededToNavigated.value = true
+                    }
+                } catch (e: Exception) {
+
+                }
             }
         }
     }

@@ -70,6 +70,7 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
 
     implementation(projects.libraries.network)
+    implementation(projects.libraries.storage)
     implementation(projects.shared.day)
     implementation(projects.shared.auth)
 }
