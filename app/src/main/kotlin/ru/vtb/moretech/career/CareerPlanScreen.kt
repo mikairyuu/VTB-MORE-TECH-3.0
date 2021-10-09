@@ -63,7 +63,7 @@ fun CareerPlanScreen() {
                                 Column(modifier = Modifier
                                     .padding(end = 30.dp)
                                     .align(Alignment.TopStart)) {
-                                    Text(text ="День $index", color = Color.Black, fontWeight = FontWeight.Bold)
+                                    Text(text ="День ${index+1}", color = Color.Black, fontWeight = FontWeight.Bold)
                                     Spacer(modifier = Modifier.height(5.dp))
                                     Text(text = item, color = Color.Black, modifier = Modifier.widthIn(max = 1500.dp))
                                 }

@@ -49,7 +49,7 @@ fun CareerTopBar() {
                 modifier = Modifier.padding(end = 10.dp)
             )
             Text(
-                text = stringResource(R.string.money_format, 100),
+                text = stringResource(R.string.money_format, 0),
                 modifier = Modifier.padding(end = 10.dp),
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp
