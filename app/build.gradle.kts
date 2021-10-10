@@ -63,6 +63,7 @@ dependencies {
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation)
+    implementation(project(mapOf("path" to ":shared:stats")))
     kapt(libs.hilt.compiler)
 
     implementation("com.google.accompanist:accompanist-navigation-animation:0.19.0")

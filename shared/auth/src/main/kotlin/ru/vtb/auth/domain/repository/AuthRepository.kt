@@ -10,5 +10,5 @@ interface AuthRepository {
 
     suspend fun login(user: UserSummary): Token
 
-    suspend fun getStatistic(user: User): User
+    suspend fun getUser(token: Token): User
 }

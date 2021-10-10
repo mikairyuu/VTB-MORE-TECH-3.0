@@ -15,5 +15,5 @@ interface AuthApi {
     suspend fun login(@Body user: UserSummary): Token
 
     @POST("Account/get")
-    suspend fun getStatistic(@Body user: User): User
+    suspend fun getUser(@Body token: Token): User
 }

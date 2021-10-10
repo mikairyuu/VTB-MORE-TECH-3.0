@@ -31,7 +31,7 @@ fun CareerPlanScreen(navController: NavHostController) {
 
     Scaffold(
         topBar = {
-           CareerTopBar()
+           CareerTopBar(navController)
         }
     ) {
         Divider(

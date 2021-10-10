@@ -6,10 +6,13 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import ru.vtb.auth.domain.entity.Token
 import ru.vtb.auth.domain.entity.User
 import ru.vtb.auth.domain.entity.UserSummary
+import ru.vtb.auth.domain.usecase.GetUserInfoUseCase
 import ru.vtb.auth.domain.usecase.LoginUSerUseCase
 import ru.vtb.auth.domain.usecase.RegisterUserUseCase
+import ru.vtb.moretech.stats.UserStatsController
 import ru.vtb.storage.PreferencesProvider
 import javax.inject.Inject
 
@@ -20,12 +23,13 @@ inline fun <T> all(vararg values: T, condition: (T) -> Boolean): Boolean =
 class LoginViewModel @Inject constructor(
     private val registerUserUseCase: RegisterUserUseCase,
     private val loginUSerUseCase: LoginUSerUseCase,
+    private val getUserInfoUseCase: GetUserInfoUseCase,
     private val preferencesProvider: PreferencesProvider
-): ViewModel(){
+) : ViewModel() {
 
-    var name =  MutableStateFlow("")
-    val email =  MutableStateFlow("")
-    val password =  MutableStateFlow("")
+    var name = MutableStateFlow("")
+    val email = MutableStateFlow("")
+    val password = MutableStateFlow("")
 
     val isNeededToNavigated = MutableStateFlow(false)
 
@@ -34,7 +38,9 @@ class LoginViewModel @Inject constructor(
         if (all(name.value, email.value, password.value) { it.isNotBlank() }) {
             viewModelScope.launch {
                 try {
-                    registerUserUseCase(User(name.value, email.value, password.value)).also {
+                    val user = User(name.value, email.value, password.value)
+                    registerUserUseCase(user).also {
+                        UserStatsController.user = user
                         preferencesProvider.saveUserToken(it.token)
                         isNeededToNavigated.value = true
                     }
@@ -54,6 +60,7 @@ class LoginViewModel @Inject constructor(
                     loginUSerUseCase(UserSummary(email.value, password.value)).also {
                         preferencesProvider.saveUserToken(it.token)
                         isNeededToNavigated.value = true
+                        UserStatsController.user = getUserInfoUseCase(it)
                     }
                 } catch (e: Exception) {
 

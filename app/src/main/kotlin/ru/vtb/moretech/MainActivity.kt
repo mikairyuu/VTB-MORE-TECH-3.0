@@ -27,6 +27,8 @@ import ru.vtb.moretech.career.CareerPlanScreen
 import ru.vtb.moretech.career.CareerTopBar
 import ru.vtb.moretech.login.LoginScreen
 import ru.vtb.moretech.screen.DayScreen
+import ru.vtb.moretech.stats.StatsScreen
+import ru.vtb.moretech.stats.UserStatsController
 import ru.vtb.moretech.ui.theme.VTBTheme
 import ru.vtb.storage.PreferencesProvider
 import javax.inject.Inject
@@ -162,6 +164,9 @@ class MainActivity : ComponentActivity() {
                         Log.d("TESTING", respectId.toString())
                         requireNotNull(respectId)
                         Respect(respectId)
+                    }
+                    composable("Stats") {
+                         StatsScreen(navController)
                     }
                 }
             }

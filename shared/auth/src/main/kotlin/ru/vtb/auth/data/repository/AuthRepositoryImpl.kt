@@ -19,7 +19,7 @@ class AuthRepositoryImpl @Inject constructor(private val api: AuthApi) : AuthRep
         api.login(user)
     }
 
-    override suspend fun getStatistic(user: User): User = withContext(Dispatchers.IO) {
-        api.getStatistic(user)
+    override suspend fun getUser(token: Token): User = withContext(Dispatchers.IO) {
+        api.getUser(token)
     }
 }

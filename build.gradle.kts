@@ -8,6 +8,7 @@ buildscript {
         classpath(libs.android.gradle.core)
         classpath(libs.kotlin.gradle.core)
         classpath(libs.hilt.gradle.core)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
     }
 }
 
